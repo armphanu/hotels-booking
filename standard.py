@@ -153,23 +153,26 @@ class Standard(object):
     def test(self):
         a = self.comboBox.currentText()
         self.cur.execute("select status from standard where rowid=(?)", (a, ))
-        c = self.cur.fetchall()[0][0]
-        if a == '1' and c == 1:
-            self.pay_2.setText("EMPTY")
-        elif a == '1' and c == 0:
-            self.pay_2.setText("FULL")
-        elif a == '2' and c == 1:
-            self.pay_2.setText("EMPTY")
-        elif a == '2' and c == 0:
-            self.pay_2.setText("FULL")
-        elif a == '3' and c == 1:
-            self.pay_2.setText("EMPTY")
-        elif a == '3' and c == 0:
-            self.pay_2.setText("FULL")
-        elif a == '4' and c == 1:
-            self.pay_2.setText("EMPTY")
-        elif a == '4' and c == 0:
-            self.pay_2.setText("FULL")
+        if a != "-":
+            c = self.cur.fetchall()[0][0]
+            if a == '1' and c == 1:
+                self.pay_2.setText("EMPTY")
+            elif a == '1' and c == 0:
+                self.pay_2.setText("FULL")
+            elif a == '2' and c == 1:
+                self.pay_2.setText("EMPTY")
+            elif a == '2' and c == 0:
+                self.pay_2.setText("FULL")
+            elif a == '3' and c == 1:
+                self.pay_2.setText("EMPTY")
+            elif a == '3' and c == 0:
+                self.pay_2.setText("FULL")
+            elif a == '4' and c == 1:
+                self.pay_2.setText("EMPTY")
+            elif a == '4' and c == 0:
+                self.pay_2.setText("FULL")
+        else:
+            self.pay_2.setText("")
 
     def changedb(self):
         a = self.comboBox.currentText()
@@ -185,7 +188,9 @@ class Standard(object):
     def connecter(self):
         a = self.comboBox.currentText()
         self.cur.execute("select status from standard where rowid=(?)", (a, ))
-        c = self.cur.fetchall()[0][0]
+        c = 0
+        if a != "-":
+            c = self.cur.fetchall()[0][0]
         if c == 1:
             self.window = QtWidgets.QMainWindow()
             self.Project = Popup()
@@ -202,10 +207,10 @@ class Standard(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Booking"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Book"))
         self.checkin.setDisplayFormat(_translate("MainWindow", "dd/M/yyyy"))
         self.checkout.setDisplayFormat(_translate("MainWindow", "dd/M/yyyy"))
-        self.pushbutton.setText(_translate("MainWindow", "Booking"))
+        self.pushbutton.setText(_translate("MainWindow", "Book"))
         self.label.setText(_translate("MainWindow", "Room Number"))
         self.label_2.setText(_translate("MainWindow", "Check-In"))
         self.label_3.setText(_translate("MainWindow", "Check-Out"))
