@@ -8,6 +8,8 @@
 
 import sqlite3
 from PyQt5 import QtCore, QtGui, QtWidgets
+from successpopup import Popup
+from failpopup import failpopup
 
 
 class Standard(object):
@@ -42,11 +44,13 @@ class Standard(object):
         self.Adultmany.setGeometry(QtCore.QRect(340, 50, 61, 21))
         self.Adultmany.setMaximum(2)
         self.Adultmany.setObjectName("Adultmany")
+        self.Adultmany.valueChanged.connect(self.calculate)
 
         self.Kidmany = QtWidgets.QSpinBox(self.centralwidget)
         self.Kidmany.setGeometry(QtCore.QRect(340, 100, 61, 21))
         self.Kidmany.setMaximum(2)
         self.Kidmany.setObjectName("Kidmany")
+        self.Kidmany.valueChanged.connect(self.calculate)
 
         self.creditcard = QtWidgets.QTextEdit(self.centralwidget)
         self.creditcard.setGeometry(QtCore.QRect(10, 200, 221, 31))
@@ -55,7 +59,7 @@ class Standard(object):
         self.pushbutton = QtWidgets.QPushButton(self.centralwidget)
         self.pushbutton.setGeometry(QtCore.QRect(240, 190, 61, 41))
         self.pushbutton.setObjectName("pushbutton")
-        self.pushbutton.clicked.connect(self.changedb)
+        self.pushbutton.clicked.connect(self.connecter)
 
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(120, 7, 41, 21))
@@ -70,6 +74,7 @@ class Standard(object):
         self.pay = QtWidgets.QTextEdit(self.centralwidget)
         self.pay.setGeometry(QtCore.QRect(340, 150, 61, 31))
         self.pay.setObjectName("pay")
+        self.pay.setReadOnly(True)
 
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 0, 111, 31))
@@ -172,9 +177,32 @@ class Standard(object):
         self.conn.commit()
         self.pay_2.setText("FULL")
 
+    def calculate(self):
+        a = self.Adultmany.value()
+        b = self.Kidmany.value()
+        self.pay.setText(str((a * 2000)+(b * 1000)))
+
+    def connecter(self):
+        a = self.comboBox.currentText()
+        self.cur.execute("select status from standard where rowid=(?)", (a, ))
+        c = self.cur.fetchall()[0][0]
+        if c == 1:
+            self.window = QtWidgets.QMainWindow()
+            self.Project = Popup()
+            self.Project.setupUi(self.window)
+            self.window.show()
+            self.cur.execute("""Update standard set status = 0 where rowid=(?)""", (a, ))
+            self.conn.commit()
+            self.pay_2.setText("FULL")
+        else:
+            self.window = QtWidgets.QMainWindow()
+            self.Project = failpopup()
+            self.Project.setupUi(self.window)
+            self.window.show()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Booking"))
         self.checkin.setDisplayFormat(_translate("MainWindow", "dd/M/yyyy"))
         self.checkout.setDisplayFormat(_translate("MainWindow", "dd/M/yyyy"))
         self.pushbutton.setText(_translate("MainWindow", "Booking"))
