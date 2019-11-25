@@ -8,7 +8,7 @@
 
 import sqlite3
 from PyQt5 import QtCore, QtGui, QtWidgets
-from ui import Ui_Dialog
+
 
 class Standard(object):
     def setupUi(self, MainWindow):
@@ -22,8 +22,8 @@ class Standard(object):
 
         self.conn = sqlite3.connect('test.db')
         self.cur = self.conn.cursor()
-        self.cur.execute("select * from deluxe where status = (?)", (0, ))
-        print(self.cur.fetchall())
+        # self.cur.execute("select * from deluxe where status = (?)", (0, ))
+        # print(self.cur.fetchall())
 
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -55,6 +55,7 @@ class Standard(object):
         self.pushbutton = QtWidgets.QPushButton(self.centralwidget)
         self.pushbutton.setGeometry(QtCore.QRect(240, 190, 61, 41))
         self.pushbutton.setObjectName("pushbutton")
+        self.pushbutton.clicked.connect(self.changedb)
 
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(120, 7, 41, 21))
@@ -164,7 +165,12 @@ class Standard(object):
             self.pay_2.setText("EMPTY")
         elif a == '4' and c == 0:
             self.pay_2.setText("FULL")
-        
+
+    def changedb(self):
+        a = self.comboBox.currentText()
+        self.cur.execute("""Update standard set status = 0 where rowid=(?)""", (a, ))
+        self.conn.commit()
+        self.pay_2.setText("FULL")
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
