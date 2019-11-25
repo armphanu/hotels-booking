@@ -6,6 +6,4 @@
 62070140     | นายพิพัฒน์พงศ์ พิทักษ์ก่อผล  | [tomo](https://github.com/tomo44151z)
 62070149     | นายภาณุพงศ์ จันทร์เล็ก         |[armphanu](https://github.com/armphanu)
 62070165     | นายวรรธนะ วงศ์วัฒนอนันต์     |[genwtn](https://github.com/genwtn)
-62070193     | นายสหพล ปั้นแตง                |[BaySP]("https://github.com/BaySP
-
-")
+62070193     | นายสหพล ปั้นแตง                |[BaySP]("https://github.com/BaySP")
