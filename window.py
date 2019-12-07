@@ -9,6 +9,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from standard import Standard
+from suite import suite
 
 class Ui_MainWindows(object):
     def setupUi(self, MainWindow):
@@ -33,17 +34,18 @@ class Ui_MainWindows(object):
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_5.setGeometry(QtCore.QRect(400, 300, 400, 300))
         self.pushButton_5.setObjectName("pushButton_5")
-        MainWindow.setCentralWidget(self.centralwidget)
+        self.pushButton_5.clicked.connect(self.connecter_2)
 
+        MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
         self.menubar.setObjectName("menubar")
+        
         MainWindow.setMenuBar(self.menubar)
-
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
+        
         MainWindow.setStatusBar(self.statusbar)
-
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -51,6 +53,13 @@ class Ui_MainWindows(object):
         #print(self.pushButton_3.clicked())
         self.window = QtWidgets.QMainWindow()
         self.Project = Standard()
+        self.Project.setupUi(self.window)
+        self.window.show()
+
+    def connecter_2(self):
+        #print(self.pushButton_3.clicked())
+        self.window = QtWidgets.QMainWindow()
+        self.Project = suite()
         self.Project.setupUi(self.window)
         self.window.show()
 
