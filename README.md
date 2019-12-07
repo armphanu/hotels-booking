@@ -1,6 +1,6 @@
-# hotels-booking | PSIT 2019
+﻿# hotels-booking | PSIT 2019
 ## รายละเอียด
->comming soon...
+>ช่วยในการจองโรงแรม checkin ให้สะดวกรวดเร็วและทำได้ได้ง่ายขึ้น
 
 ## เครื่องมือ
 * Python 3.7
