@@ -6,6 +6,7 @@ from failpopup import failpopup
 
 class superior(object):
     def setupUi(self, MainWindow):
+        """show superior window"""
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(407, 288)
 
@@ -59,7 +60,7 @@ class superior(object):
         self.comboBox.addItem("2")
         self.comboBox.addItem("3")
         self.comboBox.addItem("4")
-        self.comboBox.currentTextChanged.connect(self.test)
+        self.comboBox.currentTextChanged.connect(self.status)
 
         self.pay = QtWidgets.QTextEdit(self.centralwidget)
         self.pay.setGeometry(QtCore.QRect(340, 150, 61, 31))
@@ -140,7 +141,8 @@ class superior(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def test(self):
+    def status(self):
+        """show status full or empty"""
         a = self.comboBox.currentText()
         self.cur.execute("select status from superior where rowid=(?)", (a, ))
         if a != "-":
@@ -165,11 +167,13 @@ class superior(object):
             self.pay_2.setText("")
 
     def calculate(self):
+        """calculate price"""
         a = self.Adultmany.value()
         b = self.Kidmany.value()
         self.pay.setText(str((a * 2000)+(b * 1000)))
 
     def connecter(self):
+        """connect to fail or success popup"""
         a = self.comboBox.currentText()
         self.cur.execute("select status from superior where rowid=(?)", (a, ))
         c = 0
@@ -190,6 +194,7 @@ class superior(object):
             self.window.show()
 
     def retranslateUi(self, MainWindow):
+        """settexxt in superior window"""
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Book"))
         self.checkin.setDisplayFormat(_translate("MainWindow", "dd/M/yyyy"))
@@ -202,7 +207,7 @@ class superior(object):
         self.label_5.setText(_translate("MainWindow", "Adult"))
         self.label_6.setText(_translate("MainWindow", "Kid"))
         self.label_7.setText(_translate("MainWindow", "Cost"))
-        self.label_8.setText(_translate("MainWindow", "superior Room"))
+        self.label_8.setText(_translate("MainWindow", "Superior Room"))
 
 
 if __name__ == "__main__":

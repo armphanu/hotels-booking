@@ -11,6 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class failpopup(object):
     def setupUi(self, MainWindow):
+        """show fail window"""
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(250, 200)
 
@@ -35,6 +36,7 @@ class failpopup(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
+        """settext in fail window"""
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 

@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 class Ui_Resetcontrol(object):
     def setupUi(self, Resetcontrol):
+        """show reset window"""
         self.conn = sqlite3.connect('test.db')
         self.cur = self.conn.cursor()
 
@@ -127,6 +128,7 @@ class Ui_Resetcontrol(object):
         QtCore.QMetaObject.connectSlotsByName(Resetcontrol)
 
     def retranslateUi(self, Resetcontrol):
+        """settext in reset window"""
         _translate = QtCore.QCoreApplication.translate
         Resetcontrol.setWindowTitle(_translate("Resetcontrol", "Reset Controler"))
         self.label.setText(_translate("Resetcontrol", "Reset Controler"))
@@ -164,6 +166,7 @@ class Ui_Resetcontrol(object):
         self.comboBox_4.setItemText(4, _translate("Resetcontrol", "4"))
 
     def checkstandard(self):
+        """reset standard room to empty"""
         a = self.comboBox.currentText()
         if a != "-":
             msg = QMessageBox()
@@ -174,11 +177,11 @@ class Ui_Resetcontrol(object):
             y = msg.setStandardButtons(QMessageBox.Yes|QMessageBox.No)
             x = msg.exec()
             if x == QMessageBox.Yes:
-                print(a)
                 self.cur.execute("""Update standard set status = 1 where rowid=(?)""", (a, ))
                 self.conn.commit()
 
     def checksuperior(self):
+        """reset superiorroom to empty"""
         a = self.comboBox_2.currentText()
         if a != "-":
             msg = QMessageBox()
@@ -193,6 +196,7 @@ class Ui_Resetcontrol(object):
                 self.conn.commit()            
 
     def checkdeluxe(self):
+        """reset deluxe room to empty"""
         a = self.comboBox_3.currentText()
         if a != "-":
             msg = QMessageBox()
@@ -208,6 +212,7 @@ class Ui_Resetcontrol(object):
 
 
     def checksuite(self):
+        """reset suite room to empty"""
         a = self.comboBox_4.currentText()
         if a != "-":
             msg = QMessageBox()

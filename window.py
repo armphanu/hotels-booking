@@ -14,6 +14,7 @@ from deluxe import deluxe
 from Superior import superior
 class Ui_MainWindows(object):
     def setupUi(self, MainWindow):
+        """main window"""
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(800, 640)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -41,7 +42,7 @@ class Ui_MainWindows(object):
         self.pushButton_6.setIconSize(QtCore.QSize(550,250))
         self.pushButton_6.setGeometry(QtCore.QRect(0,0,400,300))
         self.pushButton_6.setObjectName("pushButton_6")
-        self.pushButton_6.clicked.connect(self.connecter)
+        self.pushButton_6.clicked.connect(self.connecter_tostandard)
 
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_5.setGeometry(QtCore.QRect(400, 300, 400, 300))
@@ -49,7 +50,7 @@ class Ui_MainWindows(object):
         self.pushButton_5.setIconSize(QtCore.QSize(550,250))
         self.pushButton_5.setGeometry(QtCore.QRect(400, 300, 400, 300))
         self.pushButton_5.setObjectName("pushButton_5")
-        self.pushButton_5.clicked.connect(self.connecter_2)
+        self.pushButton_5.clicked.connect(self.connecter_tosuite)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -65,26 +66,30 @@ class Ui_MainWindows(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def connecter_todeluxe(self):
+        """connect to deluxe room menu"""
         self.window = QtWidgets.QMainWindow()
         self.Project = deluxe()
         self.Project.setupUi(self.window)
         self.window.show()
 
     def connecter_tosuperior(self):
+        """connect to superior room menu"""
         self.window = QtWidgets.QMainWindow()
         self.Project = superior()
         self.Project.setupUi(self.window)
         self.window.show()
 
 
-    def connecter(self):
+    def connecter_tostandard(self):
+        """connect to standard room menu"""
         #print(self.pushButton_3.clicked())
         self.window = QtWidgets.QMainWindow()
         self.Project = Standard()
         self.Project.setupUi(self.window)
         self.window.show()
 
-    def connecter_2(self):
+    def connecter_tosuite(self):
+        """connect to suite room menu"""
         #print(self.pushButton_3.clicked())
         self.window = QtWidgets.QMainWindow()
         self.Project = suite()
@@ -92,6 +97,7 @@ class Ui_MainWindows(object):
         self.window.show()
 
     def retranslateUi(self, MainWindow):
+        """settext in main window"""
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Main"))
         self.pushButton_3.setText(_translate("MainWindow", ""))

@@ -14,6 +14,7 @@ from failpopup import failpopup
 
 class Standard(object):
     def setupUi(self, MainWindow):
+        """show standard window"""
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(407, 288)
 
@@ -69,7 +70,7 @@ class Standard(object):
         self.comboBox.addItem("2")
         self.comboBox.addItem("3")
         self.comboBox.addItem("4")
-        self.comboBox.currentTextChanged.connect(self.test)
+        self.comboBox.currentTextChanged.connect(self.status)
 
         self.pay = QtWidgets.QTextEdit(self.centralwidget)
         self.pay.setGeometry(QtCore.QRect(340, 150, 61, 31))
@@ -150,7 +151,8 @@ class Standard(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def test(self):
+    def status(self):
+        """show status full or empty"""
         a = self.comboBox.currentText()
         self.cur.execute("select status from standard where rowid=(?)", (a, ))
         if a != "-":
@@ -174,18 +176,14 @@ class Standard(object):
         else:
             self.pay_2.setText("")
 
-    def changedb(self):
-        a = self.comboBox.currentText()
-        self.cur.execute("""Update standard set status = 0 where rowid=(?)""", (a, ))
-        self.conn.commit()
-        self.pay_2.setText("FULL")
-
     def calculate(self):
+        """calculate price"""
         a = self.Adultmany.value()
         b = self.Kidmany.value()
         self.pay.setText(str((a * 2000)+(b * 1000)))
 
     def connecter(self):
+        """connect to fail or success popup"""
         a = self.comboBox.currentText()
         self.cur.execute("select status from standard where rowid=(?)", (a, ))
         c = 0
@@ -206,6 +204,7 @@ class Standard(object):
             self.window.show()
 
     def retranslateUi(self, MainWindow):
+        """settext in standard window"""
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Book"))
         self.checkin.setDisplayFormat(_translate("MainWindow", "dd/M/yyyy"))

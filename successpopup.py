@@ -11,6 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Popup(object):
     def setupUi(self, MainWindow):
+        """show success window"""
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(250, 200)
 
@@ -35,6 +36,7 @@ class Popup(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
+        """settext in success window"""
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
