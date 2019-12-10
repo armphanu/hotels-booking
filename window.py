@@ -10,7 +10,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from standard import Standard
 from suite import suite
-
+from deluxe import deluxe
+from Superior import superior
 class Ui_MainWindows(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -20,18 +21,32 @@ class Ui_MainWindows(object):
         
         self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_3.setGeometry(QtCore.QRect(0, 300, 400, 300))
+        self.pushButton_3.setIcon(QtGui.QIcon('Superior_room.jpg'))
+        self.pushButton_3.setIconSize(QtCore.QSize(550,250))
+        self.pushButton_3.setGeometry(QtCore.QRect(0,300,400,300))
         self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_3.clicked.connect(self.connecter_tosuperior)
 
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_4.setGeometry(QtCore.QRect(400, 0, 400, 300))
+        self.pushButton_4.setIcon(QtGui.QIcon('Deluxe_room.jpg'))
+        self.pushButton_4.setIconSize(QtCore.QSize(550,250))
+        self.pushButton_4.setGeometry(QtCore.QRect(400,0,400,300))
         self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_4.clicked.connect(self.connecter_todeluxe)
 
         self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_6.setGeometry(QtCore.QRect(0, 0, 400, 300))
+        self.pushButton_6.setIcon(QtGui.QIcon('Standard_room.jpg'))
+        self.pushButton_6.setIconSize(QtCore.QSize(550,250))
+        self.pushButton_6.setGeometry(QtCore.QRect(0,0,400,300))
         self.pushButton_6.setObjectName("pushButton_6")
         self.pushButton_6.clicked.connect(self.connecter)
 
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_5.setGeometry(QtCore.QRect(400, 300, 400, 300))
+        self.pushButton_5.setIcon(QtGui.QIcon('Suite_room.jpg'))
+        self.pushButton_5.setIconSize(QtCore.QSize(550,250))
         self.pushButton_5.setGeometry(QtCore.QRect(400, 300, 400, 300))
         self.pushButton_5.setObjectName("pushButton_5")
         self.pushButton_5.clicked.connect(self.connecter_2)
@@ -48,6 +63,19 @@ class Ui_MainWindows(object):
         MainWindow.setStatusBar(self.statusbar)
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def connecter_todeluxe(self):
+        self.window = QtWidgets.QMainWindow()
+        self.Project = deluxe()
+        self.Project.setupUi(self.window)
+        self.window.show()
+
+    def connecter_tosuperior(self):
+        self.window = QtWidgets.QMainWindow()
+        self.Project = superior()
+        self.Project.setupUi(self.window)
+        self.window.show()
+
 
     def connecter(self):
         #print(self.pushButton_3.clicked())
@@ -66,10 +94,10 @@ class Ui_MainWindows(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Main"))
-        self.pushButton_3.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton_4.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton_6.setText(_translate("MainWindow", "PushButton"))
-        self.pushButton_5.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton_3.setText(_translate("MainWindow", ""))
+        self.pushButton_4.setText(_translate("MainWindow", ""))
+        self.pushButton_6.setText(_translate("MainWindow", ""))
+        self.pushButton_5.setText(_translate("MainWindow", ""))
 
 
 if __name__ == "__main__":
