@@ -1,10 +1,13 @@
 ﻿# hotels-booking | PSIT 2019
 ## รายละเอียด project
 >ช่วยในการจองโรงแรม checkin ให้สะดวกรวดเร็วและทำได้ได้ง่ายขึ้น
-
+>window.py คือตัวโปรแกรมหลัก
 ## เครื่องมือ
 * Python 3.7
 * PyQt5
+## Install PyQt5
+> run it in Window command prompt
+* py -m pip install PyQt5
 
 ## ผู้พัฒนา
 รหัสนักศึกษา    |    ชื่อ-นามสกุล                  | github
